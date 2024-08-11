@@ -39,4 +39,13 @@ typedef struct _SGpioControlBlock
 #define PA2 2
 #define PA3 3
 
+#define PB1 1
+
+uint8_t set_gpio_crl_crh(SGpioControlBlock *gpio_ptr, uint8_t contrl_num,
+                         uint8_t cnf, uint8_t mode);
+
+void gpio_reset_by_pin(SGpioControlBlock *gpio_ptr, uint8_t contrl_num);
+
+void gpio_set_by_pin(SGpioControlBlock *gpio_ptr, uint8_t contrl_num);
+
 #endif //_STM32F103C8T6_GPIO_INCLUDE_

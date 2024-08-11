@@ -21,5 +21,8 @@ typedef struct _SRccControlBlock
 
 #define RCC_CONTROL_BLOCK_ADDR (SRccControlBlock *)0x40021000
 #define GPIOA_ENABLE_MASK      ((0x01) << 2)
+#define GPIOB_ENABLE_MASK      ((0x01) << 3)
+
+void rcc_enable_ape2(uint32_t mask);
 
 #endif //_STM32F103C8T6_RCC_INCLUDE_
