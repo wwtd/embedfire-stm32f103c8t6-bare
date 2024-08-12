@@ -1,6 +1,6 @@
 #include "on-board-led.h"
-#include "../chip/rcc.h"
-#include "../chip/gpio.h"
+#include "rcc.h"
+#include "gpio.h"
 
 void on_board_led_init()
 {

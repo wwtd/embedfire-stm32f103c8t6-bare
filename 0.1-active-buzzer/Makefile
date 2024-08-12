@@ -1,6 +1,9 @@
 CROSS_COMPILE = arm-none-eabi-
 
-CC = $(CROSS_COMPILE)gcc -mcpu=cortex-m3 -mthumb -g
+INCLUDE_DIRS = ./board ./chip ./app
+INCLUDE_FLAGS = $(addprefix -I, $(INCLUDE_DIRS))
+
+CC = $(CROSS_COMPILE)gcc -mcpu=cortex-m3 -mthumb -g $(INCLUDE_FLAGS)
 AS = $(CROSS_COMPILE)as
 LD = $(CROSS_COMPILE)ld
 OBJCOPY = $(CROSS_COMPILE)objcopy
@@ -40,6 +43,6 @@ $(OBJ_DIR)/%.o: %.s
 	$(AS) $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)/*
 
 .PHONY: clean

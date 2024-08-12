@@ -3,3 +3,5 @@
 *.elf
 *.dump
 *.lst
+*.cache*
+*compile_commands.json

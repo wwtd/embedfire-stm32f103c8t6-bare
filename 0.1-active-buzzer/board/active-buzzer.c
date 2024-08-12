@@ -1,6 +1,6 @@
 #include "active-buzzer.h"
-#include "../chip/rcc.h"
-#include "../chip/gpio.h"
+#include "rcc.h"
+#include "gpio.h"
 
 void active_buzzer_init()
 {
