@@ -37,5 +37,5 @@ void gpio_reset_by_pin(SGpioControlBlock *gpio_ptr, uint8_t contrl_num)
 
 void gpio_set_by_pin(SGpioControlBlock *gpio_ptr, uint8_t contrl_num)
 {
-    gpio_ptr->bsrr = 1 << (contrl_num + 16);
+    gpio_ptr->bsrr = 1 << (contrl_num);
 }

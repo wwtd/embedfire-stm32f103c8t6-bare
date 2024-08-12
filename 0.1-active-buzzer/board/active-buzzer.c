@@ -11,10 +11,10 @@ void active_buzzer_init()
 
 void active_buzzer_start()
 {
-    gpio_set_by_pin(GPIOB_CTRL_BLOCK_ADDR, PB1);
+    gpio_reset_by_pin(GPIOB_CTRL_BLOCK_ADDR, PB1);
 }
 
 void active_buzzer_stop()
 {
-    gpio_reset_by_pin(GPIOB_CTRL_BLOCK_ADDR, PB1);
+    gpio_set_by_pin(GPIOB_CTRL_BLOCK_ADDR, PB1);
 }
