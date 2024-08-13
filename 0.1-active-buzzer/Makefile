@@ -47,7 +47,7 @@ $(OBJ_DIR)/%.o: %.s
 	$(AS) $< -o $@
 
 clean:
-	rm ./compile_commands.json
+	rm -rf ./compile_commands.json
 	rm -rf $(OBJ_DIR)/*
 
 .PHONY: clean
