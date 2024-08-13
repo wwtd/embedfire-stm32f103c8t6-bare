@@ -23,7 +23,11 @@ C_OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(C_SRCS))
 ASM_OBJS = $(patsubst %.s,$(OBJ_DIR)/%.o,$(ASM_SRCS))
 OBJS = $(C_OBJS) $(ASM_OBJS)
 
-all: $(TARGET_ELF) $(TARGET_BIN) $(TARGET_LST)
+all:
+	make clean
+	bear -- make target
+
+target: $(TARGET_ELF) $(TARGET_BIN) $(TARGET_LST)
 
 $(TARGET_ELF): $(OBJS)
 	$(LD) -T $(LINKER_SCRIPT) -o $@ $(OBJS)
@@ -43,6 +47,7 @@ $(OBJ_DIR)/%.o: %.s
 	$(AS) $< -o $@
 
 clean:
+	rm ./compile_commands.json
 	rm -rf $(OBJ_DIR)/*
 
 .PHONY: clean
