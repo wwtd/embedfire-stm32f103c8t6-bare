@@ -2,7 +2,7 @@
 
 void delay(uint16_t count)
 {
-    volatile uint32_t counts = 1000 * count;
+    volatile uint32_t counts = 8000 * count;
 
     while (counts--)
         ;

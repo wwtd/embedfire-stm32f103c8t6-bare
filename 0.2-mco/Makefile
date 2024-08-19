@@ -54,4 +54,4 @@ clean:
 
 stlink: all
 	st-flash erase
-	st-flash write $(TARGET_BIN) 0x08000000
+	st-flash --reset write $(TARGET_BIN) 0x08000000
