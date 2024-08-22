@@ -10,8 +10,8 @@
 
 void mco_init()
 {
-    GPIOA_CRH &= ~(0xF << 0);
-    GPIOA_CRH |= (0xB << 0);
+    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA8, GPIO_CNF_AF_OUT_PUSH_PULL, GPIO_MODE_OUT_SPPED_50MHZ);
+
     RCC_CFGR &= ~(0x7 << 24);
     RCC_CFGR |= (0x4 << 24);
 }
