@@ -7,7 +7,7 @@ CC = $(CROSS_COMPILE)gcc -mcpu=cortex-m3 -mthumb -g $(INCLUDE_FLAGS)
 AS = $(CROSS_COMPILE)as
 LD = $(CROSS_COMPILE)ld
 OBJCOPY = $(CROSS_COMPILE)objcopy
-OBJDUMP = $(CROSS_COMPILE)objdump -d
+OBJDUMP = $(CROSS_COMPILE)objdump
 
 SRC_DIRS = app board chip startup
 OBJ_DIR = debug

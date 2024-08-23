@@ -3,7 +3,7 @@ AS = $(TOOLS)-as
 CC = $(TOOLS)-gcc -mcpu=cortex-m3 -mthumb -g
 LD = $(TOOLS)-ld.bfd
 OBJCOPY = $(TOOLS)-objcopy
-DUMP = $(TOOLS)-objdump -d
+DUMP = $(TOOLS)-objdump
 GDB = $(TOOLS)-gdb
 
 OBJS = blink.o locore.o
