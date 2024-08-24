@@ -7,7 +7,7 @@
 /* The reset and clock control module */
 typedef struct _SRccControlBlock
 {
-    volatile uint32_t rc;   /* 0 - clock control */
+    volatile uint32_t cr;   /* 0 - clock control */
     volatile uint32_t cfg;  /* 4 - clock config */
     volatile uint32_t cir;  /* 8 - clock interrupt */
     volatile uint32_t apb2; /* c - peripheral reset */

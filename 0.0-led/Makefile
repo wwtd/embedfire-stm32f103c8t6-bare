@@ -11,7 +11,7 @@ OBJS = blink.o locore.o
 all: blink.bin blink.dump
 
 blink.dump:	blink.elf
-	$(DUMP) blink.elf > blink.dump
+	$(DUMP) -d blink.elf > blink.dump
 
 blink.bin:	blink.elf
 	$(OBJCOPY) blink.elf blink.bin -O binary

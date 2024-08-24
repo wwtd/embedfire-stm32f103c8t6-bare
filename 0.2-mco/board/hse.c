@@ -1,16 +1,12 @@
 #include "hse.h"
 #include "chip.h"
-#include "flash.h"
+#include "rcc.h"
 
 void hse_init()
 {
     flash_set_latency(TWO_WAIT_STATE);
-
-    // Prescale APB1 to HCLK/2 (RCC_CFGR_PPRE1_2)
-    *(volatile uint32_t *)(0x40021004) |= (0x4 << 8); // RCC->CFGR: address 0x40021004, PPRE1 bits at position 8
-
-    // Enable HSE clock (RCC_CR_HSEON)
-    *(volatile uint32_t *)(0x40021000) |= (1 << 16); // RCC->CR: address 0x40021000, HSEON bit at position 16
+    rcc_set_apb1_prescaler(PRESCALER_DIV_2);
+    rcc_set_hse_on();
 
     // Wait until HSE is ready (RCC_CR_HSERDY)
     while (!(*(volatile uint32_t *)(0x40021000) & (1 << 17))); // RCC->CR: address 0x40021000, HSERDY bit at position 17
