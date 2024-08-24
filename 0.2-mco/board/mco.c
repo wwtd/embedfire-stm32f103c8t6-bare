@@ -1,7 +1,5 @@
 #include "mco.h"
-#include "rcc.h"
-#include "gpio.h"
-#include <stdint.h>
+#include "chip.h"
 
 void mco_init()
 {
