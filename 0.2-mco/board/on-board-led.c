@@ -4,9 +4,12 @@
 void on_board_led_init()
 {
     rcc_enable_ape2(GPIOA_ENABLE_MASK);
-    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA1, GPIO_CNF_GP_OUT_OPEN_DRAIN, GPIO_MODE_OUT_SPPED_2MHZ);
-    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA2, GPIO_CNF_GP_OUT_OPEN_DRAIN, GPIO_MODE_OUT_SPPED_2MHZ);
-    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA3, GPIO_CNF_GP_OUT_OPEN_DRAIN, GPIO_MODE_OUT_SPPED_2MHZ);
+    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA1, GPIO_CNF_GP_OUT_OPEN_DRAIN,
+                     GPIO_MODE_OUT_SPPED_2MHZ);
+    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA2, GPIO_CNF_GP_OUT_OPEN_DRAIN,
+                     GPIO_MODE_OUT_SPPED_2MHZ);
+    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA3, GPIO_CNF_GP_OUT_OPEN_DRAIN,
+                     GPIO_MODE_OUT_SPPED_2MHZ);
     on_board_led_turn_off(FIRST);
     on_board_led_turn_off(SECOND);
     on_board_led_turn_off(THIRD);
