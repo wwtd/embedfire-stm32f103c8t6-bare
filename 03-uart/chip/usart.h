@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _STM32F103C8T6_USART1_INCLUDE_
-#define _STM32F103C8T6_USART1_INCLUDE_
+#ifndef _STM32F103C8T6_USART_INCLUDE_
+#define _STM32F103C8T6_USART_INCLUDE_
 #include <stdint.h>
 
 typedef struct _SUsartControlBlock
@@ -19,4 +19,4 @@ typedef struct _SUsartControlBlock
 #define UART4_CONTROL_BLOCK_ADDR  ((SUsartControlBlock *)0x40004C00)
 #define UART5_CONTROL_BLOCK_ADDR  ((SUsartControlBlock *)0x40005000)
 
-#endif //_STM32F103C8T6_USART1_INCLUDE_
+#endif //_STM32F103C8T6_USART_INCLUDE_

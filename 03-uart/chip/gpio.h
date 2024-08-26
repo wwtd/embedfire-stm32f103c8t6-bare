@@ -38,9 +38,10 @@ typedef struct _SGpioControlBlock
 #define PA1 (1)
 #define PA2 (2)
 #define PA3 (3)
+#define PA8 (8)
+#define PA9 (9)
 
 #define PB1 (1)
-#define PA8 (8)
 
 uint8_t set_gpio_crl_crh(SGpioControlBlock *gpio_ptr, uint8_t contrl_num,
                          uint8_t cnf, uint8_t mode);

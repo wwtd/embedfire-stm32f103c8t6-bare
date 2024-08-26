@@ -1,5 +1,7 @@
-#include "uart.h"
+#include "usart1.h"
 #include "chip.h"
+#include "gpio.h"
+#include "rcc.h"
 
 #define RCC_APB2ENR   (*((volatile unsigned int*)0x40021018))
 #define GPIOA_CRH     (*((volatile unsigned int*)0x40010804))
@@ -10,13 +12,10 @@
 
 void uart1_init()
 {
-    // 1. 启用 GPIOA 和 USART1 时钟
-    RCC_APB2ENR |= (1 << 2);  // GPIOA 时钟使能 (位2)
-    RCC_APB2ENR |= (1 << 14); // USART1 时钟使能 (位14)
+    rcc_enable_ape2(GPIOA_ENABLE_MASK);
+    rcc_enable_ape2(USART1_ENABLE_MASK);
 
-    // 2. 配置 PA9 为复用推挽输出（USART1_TX）
-    GPIOA_CRH &= ~(0xF << 4);  // 清除 PA9 的配置
-    GPIOA_CRH |= (0xB << 4);   // 配置 PA9 为 2MHz 复用推挽输出 (1011)
+    set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA9, GPIO_CNF_AF_OUT_PUSH_PULL, GPIO_MODE_OUT_SPPED_2MHZ);
 
     // 3. 配置 USART1
     USART1_BRR = 0x1D4C;      // 设置波特率为 9600 (基于 72 MHz 系统时钟)

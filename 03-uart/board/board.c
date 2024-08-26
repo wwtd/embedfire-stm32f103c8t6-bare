@@ -2,7 +2,7 @@
 #include "on-board-led.h"
 #include "mco.h"
 #include "hse.h"
-#include "uart.h"
+#include "usart1.h"
 #include "stdint.h"
 
 void board_init()

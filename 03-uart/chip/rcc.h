@@ -21,8 +21,9 @@ typedef struct _SRccControlBlock
 
 #define RCC_CONTROL_BLOCK_ADDR ((SRccControlBlock *)0x40021000)
 
-#define GPIOA_ENABLE_MASK ((0x01) << 2)
-#define GPIOB_ENABLE_MASK ((0x01) << 3)
+#define GPIOA_ENABLE_MASK  ((0x01) << 2)
+#define GPIOB_ENABLE_MASK  ((0x01) << 3)
+#define USART1_ENABLE_MASK ((0x01) << 14)
 
 typedef enum
 {

@@ -5,6 +5,6 @@
 #include "rcc.h"
 #include "gpio.h"
 #include "flash.h"
-#include "usart1.h"
+#include "usart.h"
 
 #endif //_STM32F103C8T6_CHIP_INCLUDE_
