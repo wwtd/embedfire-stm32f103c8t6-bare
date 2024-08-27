@@ -19,4 +19,7 @@ typedef struct _SUsartControlBlock
 #define UART4_CONTROL_BLOCK_ADDR  ((SUsartControlBlock *)0x40004C00)
 #define UART5_CONTROL_BLOCK_ADDR  ((SUsartControlBlock *)0x40005000)
 
+void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
+                         uint32_t clk_freq);
+
 #endif //_STM32F103C8T6_USART_INCLUDE_
