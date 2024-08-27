@@ -13,7 +13,7 @@
 
 预期现象如图：
 
-![result](./img/0.1-active_buzzer.png)
+![result](./img/01-active_buzzer.png)
 
 控制方式：
 
