@@ -18,7 +18,7 @@ void uart1_init()
     set_gpio_crl_crh(GPIOA_CTRL_BLOCK_ADDR, PA9, GPIO_CNF_AF_OUT_PUSH_PULL,
                      GPIO_MODE_OUT_SPPED_2MHZ);
 
-    usart_set_baud_rate(USART1_CONTROL_BLOCK_ADDR, 9600, 72000000);
+    usart_set_baud_rate(USART1_CONTROL_BLOCK_ADDR, 115200, 72000000);
     usart_enable_transmitter(USART1_CONTROL_BLOCK_ADDR);
     usart_enable_usart(USART1_CONTROL_BLOCK_ADDR);
 }
