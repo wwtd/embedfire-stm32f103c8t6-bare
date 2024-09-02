@@ -5,7 +5,7 @@ INCLUDE_FLAGS = $(addprefix -I, $(INCLUDE_DIRS))
 
 CC = $(CROSS_COMPILE)gcc -mcpu=cortex-m3 -mthumb -g $(INCLUDE_FLAGS)
 AS = $(CROSS_COMPILE)as
-LD = $(CROSS_COMPILE)ld
+LD = $(CROSS_COMPILE)gcc
 OBJCOPY = $(CROSS_COMPILE)objcopy
 OBJDUMP = $(CROSS_COMPILE)objdump
 
@@ -23,6 +23,9 @@ C_OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(C_SRCS))
 ASM_OBJS = $(patsubst %.s,$(OBJ_DIR)/%.o,$(ASM_SRCS))
 OBJS = $(C_OBJS) $(ASM_OBJS)
 
+# add nano.specs, link newlib-nano
+LDFLAGS = -T $(LINKER_SCRIPT) --specs=nano.specs -lc -lm -lnosys
+
 all:
 	make clean
 	bear -- make target
@@ -30,7 +33,7 @@ all:
 target: $(TARGET_ELF) $(TARGET_BIN) $(TARGET_LST)
 
 $(TARGET_ELF): $(OBJS)
-	$(LD) -T $(LINKER_SCRIPT) -o $@ $(OBJS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS)
 
 $(TARGET_BIN): $(TARGET_ELF)
 	$(OBJCOPY) -O binary $< $@

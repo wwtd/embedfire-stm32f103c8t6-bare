@@ -9,6 +9,33 @@ SECTIONS
    .text : {
        *(.vectors*)
        *(.text*)
+       *(.rodata*)
    } > flash
-   .bss  : { *(.bss*) } > sram
+
+   .data : {
+       _sdata = .;
+       *(.data*)
+       _edata = .;
+   } > sram AT > flash
+
+   .bss  : {
+       __bss_start__ = .;
+       _sbss = .;
+       *(.bss*)
+       *(COMMON)
+       __bss_end__ = .;
+       _ebss = .;
+   } > sram
+
+   .heap (NOLOAD) : {
+       _sheap = .;
+       . = ORIGIN(sram) + LENGTH(sram) - 4K;
+       _eheap = .;
+   } > sram
+
+   .stack (NOLOAD) : {
+       _sstack = .;
+       . = ORIGIN(sram) + LENGTH(sram);
+       _estack = .;
+   } > sram
 }
