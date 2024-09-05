@@ -21,6 +21,7 @@ typedef struct _SUsartControlBlock
 #define UART5_CONTROL_BLOCK_ADDR  ((SUsartControlBlock *)0x40005000)
 
 #define USART_ENABLE_TRANSMITTER_MASK ((0x01) << 3)
+#define USART_ENABLE_RECEIVER_MASK    ((0x01) << 2)
 #define USART_ENABLE_MASK             ((0x01) << 13)
 
 void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
@@ -28,12 +29,18 @@ void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
 
 void usart_enable_transmitter(SUsartControlBlock *ptr);
 
+void usart_enable_receiver(SUsartControlBlock *ptr);
+
 void usart_enable_usart(SUsartControlBlock *ptr);
 
 bool usart_transmit_data_register_empty(SUsartControlBlock *ptr);
 
+bool usart_recvive_data_register_empty(SUsartControlBlock *ptr);
+
 void usart_blocking_send_byte(SUsartControlBlock *ptr, uint8_t data);
 
-void usart_blocking_send_string(SUsartControlBlock *ptr, char *str);
+uint8_t usart_blocking_recv_byte(SUsartControlBlock *ptr);
+
+void usart_blocking_send_string(SUsartControlBlock *ptr, const char *str);
 
 #endif //_STM32F103C8T6_USART_INCLUDE_

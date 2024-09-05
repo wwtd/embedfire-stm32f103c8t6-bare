@@ -1,4 +1,5 @@
 #include "usart.h"
+#include <stdbool.h>
 #include <stdint.h>
 #include "stddef.h"
 
@@ -16,6 +17,11 @@ void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
 void usart_enable_transmitter(SUsartControlBlock *ptr)
 {
     ptr->cr1 |= USART_ENABLE_TRANSMITTER_MASK;
+}
+
+void usart_enable_receiver(SUsartControlBlock *ptr)
+{
+    ptr->cr1 |= USART_ENABLE_RECEIVER_MASK;
 }
 
 void usart_enable_usart(SUsartControlBlock *ptr)
@@ -41,7 +47,7 @@ bool usart_transmit_data_register_empty(SUsartControlBlock *ptr)
     return (((ptr->sr) & (0x01 << 7)) == 0) ? false : true;
 }
 
-void usart_blocking_send_string(SUsartControlBlock *ptr, char *str)
+void usart_blocking_send_string(SUsartControlBlock *ptr, const char *str)
 {
     uint8_t *byte_ptr = (uint8_t *)str;
     while ((*byte_ptr) != 0x00)
@@ -49,4 +55,18 @@ void usart_blocking_send_string(SUsartControlBlock *ptr, char *str)
         usart_blocking_send_byte(ptr, (*byte_ptr));
         ++byte_ptr;
     }
+}
+
+uint8_t usart_blocking_recv_byte(SUsartControlBlock *ptr)
+{
+    while (usart_recvive_data_register_empty(ptr))
+    {
+        // wait
+    };
+    return (uint8_t)((ptr->dr) & 0xFF);
+}
+
+bool usart_recvive_data_register_empty(SUsartControlBlock *ptr)
+{
+    return (((ptr->sr) & (1 << 5)) == 0) ? true : false;
 }
