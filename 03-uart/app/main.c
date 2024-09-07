@@ -4,6 +4,30 @@
 #include "log.h"
 #include <stdint.h>
 #include "usart1.h"
+#include "version.h"
+
+void print_usage(void)
+{
+    log_console_print(LOG_LEVEL_WARN, "---------------------------------");
+    log_console_print(LOG_LEVEL_WARN, "USAGE: send num to control leds");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 1  --> trun on led 1");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 2  --> trun off led 1");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 3  --> trun on led 2");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 4  --> trun off led 2");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 5  --> trun on led 3");
+    log_console_print(LOG_LEVEL_WARN, "INPUT 6  --> trun off led 3");
+    log_console_print(LOG_LEVEL_WARN, "---------------------------------");
+}
+
+void print_version(void)
+{
+    log_console_print(LOG_LEVEL_WARN, "---------------------------------");
+    log_console_print(LOG_LEVEL_WARN, "Git Version:\t%s",
+                      version_get_git_version());
+    log_console_print(LOG_LEVEL_WARN, "Build Time(UTC):\t%s",
+                      version_get_build_time());
+    log_console_print(LOG_LEVEL_WARN, "---------------------------------");
+}
 
 void deal_input_char_func(uint8_t ch)
 {
@@ -35,20 +59,9 @@ void deal_input_char_func(uint8_t ch)
         }
         break;
         default: {
-            log_console_print(LOG_LEVEL_WARN,
-                              "recv a bad ctrl num, skip control");
-            log_console_print(LOG_LEVEL_WARN,
-                              "---------------------------------");
-            log_console_print(LOG_LEVEL_WARN,
-                              "USAGE: input number to control 3 leds on board");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 1  --> trun on led 1");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 2  --> trun off led 1");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 3  --> trun on led 2");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 4  --> trun off led 2");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 5  --> trun on led 3");
-            log_console_print(LOG_LEVEL_WARN, "INPUT 6  --> trun off led 3");
-            log_console_print(LOG_LEVEL_WARN,
-                              "---------------------------------");
+            log_console_print(LOG_LEVEL_WARN, "recv wrong num, see usage");
+            print_usage();
+            print_version();
         }
         break;
     }

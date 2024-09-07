@@ -23,11 +23,18 @@ C_OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(C_SRCS))
 ASM_OBJS = $(patsubst %.s,$(OBJ_DIR)/%.o,$(ASM_SRCS))
 OBJS = $(C_OBJS) $(ASM_OBJS)
 
+GIT_VERSION := $(shell git describe --tags --dirty --always 2>/dev/null)
+BUILD_TIME := $(shell date -u +"%Y%m%d%H%M%S")
+
+CFLAGS = -DGIT_VERSION=\"$(GIT_VERSION)\"
+CFLAGS += -DBUILD_TIME=\"$(BUILD_TIME)\"
+
 # add nano.specs, link newlib-nano
 LDFLAGS = -T $(LINKER_SCRIPT) --specs=nano.specs -lc -lm -lnosys
 
 all:
 	make clean
+	@echo "CFLAGS: $(CFLAGS)"
 	bear -- make target
 
 target: $(TARGET_ELF) $(TARGET_BIN) $(TARGET_LST)
@@ -43,7 +50,7 @@ $(TARGET_LST): $(TARGET_ELF)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.s
 	@mkdir -p $(dir $@)
