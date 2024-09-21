@@ -35,6 +35,7 @@ typedef struct _SGpioControlBlock
 #define GPIO_CNF_INPUT_PULL_UP_DOWN  (0b10)
 #define GPIO_CNF_INPUT_PULL_RESERVED (0b11)
 
+#define PA0  (0)
 #define PA1  (1)
 #define PA2  (2)
 #define PA3  (3)
