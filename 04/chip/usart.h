@@ -23,6 +23,9 @@ typedef struct _SUsartControlBlock
 #define USART_ENABLE_TRANSMITTER_MASK ((0x01) << 3)
 #define USART_ENABLE_RECEIVER_MASK    ((0x01) << 2)
 #define USART_ENABLE_MASK             ((0x01) << 13)
+#define USART_ENABLE_RXNEIE_MASK      ((0x01) << 5)
+#define USART_ENABLE_TCIE_MASK        ((0x01) << 6)
+#define USART_ENABLE_TXEIE_MASK       ((0x01) << 7)
 
 void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
                          uint32_t clk_freq);
@@ -31,7 +34,11 @@ void usart_enable_transmitter(SUsartControlBlock *ptr);
 
 void usart_enable_receiver(SUsartControlBlock *ptr);
 
+void usart_enable_rx_not_empty_interrupt(SUsartControlBlock *ptr);
+
 void usart_enable_usart(SUsartControlBlock *ptr);
+
+void usart_set_USART1_handler(void (*func_ptr)(void));
 
 bool usart_transmit_data_register_empty(SUsartControlBlock *ptr);
 

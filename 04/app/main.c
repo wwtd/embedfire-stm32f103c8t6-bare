@@ -68,14 +68,19 @@ void deal_input_char_func(uint8_t ch)
     }
 }
 
+void app_uart1_recv_handler(void)
+{
+    uint8_t ch = uart1_blocking_recv_byte();
+    deal_input_char_func(ch);
+}
+
 int main(int argc, char *argv[])
 {
     board_init();
+    uart1_set_recv_cb(app_uart1_recv_handler);
 
     for (;;)
     {
-        uint8_t ch = uart1_blocking_recv_byte();
-        deal_input_char_func(ch);
     }
     return 0;
 }

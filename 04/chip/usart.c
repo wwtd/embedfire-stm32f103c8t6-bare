@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include "stddef.h"
 
+void (*USART1_interrupt_callback_func)(void) = NULL;
+
 void usart_set_baud_rate(SUsartControlBlock *ptr, uint32_t baud_rate,
                          uint32_t clk_freq)
 {
@@ -27,6 +29,11 @@ void usart_enable_receiver(SUsartControlBlock *ptr)
 void usart_enable_usart(SUsartControlBlock *ptr)
 {
     ptr->cr1 |= USART_ENABLE_MASK;
+}
+
+void usart_enable_rx_not_empty_interrupt(SUsartControlBlock *ptr)
+{
+    ptr->cr1 |= USART_ENABLE_RXNEIE_MASK;
 }
 
 void usart_blocking_send_byte(SUsartControlBlock *ptr, uint8_t data)
@@ -69,4 +76,17 @@ uint8_t usart_blocking_recv_byte(SUsartControlBlock *ptr)
 bool usart_recvive_data_register_empty(SUsartControlBlock *ptr)
 {
     return (((ptr->sr) & (1 << 5)) == 0) ? true : false;
+}
+
+void USART1_Handler(void)
+{
+    if (USART1_interrupt_callback_func != NULL)
+    {
+        (*USART1_interrupt_callback_func)();
+    }
+}
+
+void usart_set_USART1_handler(void (*func_ptr)(void))
+{
+    USART1_interrupt_callback_func = func_ptr;
 }

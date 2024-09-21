@@ -4,6 +4,7 @@
 #include "rcc.h"
 #include "usart.h"
 #include <stdint.h>
+#include "nvic.h"
 
 #define RCC_APB2ENR (*((volatile unsigned int *)0x40021018))
 #define GPIOA_CRH   (*((volatile unsigned int *)0x40010804))
@@ -24,6 +25,10 @@ void uart1_init()
     usart_set_baud_rate(USART1_CONTROL_BLOCK_ADDR, 115200, 72000000);
     usart_enable_transmitter(USART1_CONTROL_BLOCK_ADDR);
     usart_enable_receiver(USART1_CONTROL_BLOCK_ADDR);
+
+    usart_enable_rx_not_empty_interrupt(USART1_CONTROL_BLOCK_ADDR);
+    nvic_enable_interrupt(NVIC_CTRL_USART1);
+
     usart_enable_usart(USART1_CONTROL_BLOCK_ADDR);
 }
 
@@ -35,4 +40,9 @@ void uart1_send_string(const char *str)
 uint8_t uart1_blocking_recv_byte()
 {
     return usart_blocking_recv_byte(USART1_CONTROL_BLOCK_ADDR);
+}
+
+void uart1_set_recv_cb(void (*func_ptr)(void))
+{
+    usart_set_USART1_handler(func_ptr);
 }

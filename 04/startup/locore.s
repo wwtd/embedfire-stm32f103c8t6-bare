@@ -41,7 +41,7 @@
 .word   spin        /* 36 USB Low Priority or CAN RX0 */
 .word   spin        /* 37 CAN RX1 */
 .word   spin        /* 38 CAN SCE */
-.word   spin        /* 39 EXT1 line[9:5] */
+.word   spin        /* 39 EXTI line[9:5] */
 .word   spin        /* 40 TIM1 Break */
 .word   spin        /* 41 TIM1 Update */
 .word   spin        /* 42 TIM1 Tigger and Commutation */
@@ -55,12 +55,12 @@
 .word   spin        /* 50 I2C2 Error */
 .word   spin        /* 51 SPI1 */
 .word   spin        /* 52 SPI2 */
-.word   spin        /* 53 USART1 */
+.word   USART1_Handler        /* 53 USART1 */
 .word   spin        /* 54 USART2 */
 .word   spin        /* 55 USART3 */
-.word   spin        /* 56 EXT1 Line[15:10] */
-.word   spin        /* 57 RTC alarm through EXT1 */
-.word   spin        /* 58 USB wakeup through EXT1*/
+.word   spin        /* 56 EXTI Line[15:10] */
+.word   spin        /* 57 RTC alarm through EXTI */
+.word   spin        /* 58 USB wakeup through EXTI*/
 .word   spin        /* 59 TIM8 Break */
 .word   spin        /* 60 TIM8 Update*/
 .word   spin        /* 61 TIM8 Tigger and Commutation */
